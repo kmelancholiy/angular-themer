@@ -3,7 +3,7 @@ angular.module('angular-themer', [])
 	.provider('themer', function() {
 		"use strict";
 
-		var _styles = [], _selected = { label: '', href: [''] }, _watchers = [];
+		var _styles = [], _selected = { key: '', label: '', href: [''] }, _watchers = [];
 
 		this.setStyles = function (styles) {
 			_styles = styles;
@@ -69,7 +69,7 @@ angular.module('angular-themer', [])
 
 		return {
 			restrict: 'A',
-			template: '<select ng-model="theme.selected"><option ng-repeat="style in theme.styles" value="{{ style.key }}">{{ style.label }}</option></select>',
+			template: '<select ng-model="theme.selected" ng-options="style as style.label for style in theme.styles"></select>',
 			replace: true,
 			scope: false,
 			controller: ['$scope', 'themer', function ($scope, themer) {
